@@ -1,7 +1,16 @@
 package palvelinohjelmointi.HarjoitusTy.HarjoitusTyDomain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+@Entity
 public class Player {
-	private String firstName, lastName, playerNum;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+		private Long id;
+		private String firstName, lastName, playerNum;
+
 
 	public Player(String firstName, String lastName, String playerNum) {
 		this.firstName = firstName;
@@ -40,6 +49,14 @@ public class Player {
 
 	public void setPlayerNum(String playerNum) {
 		this.playerNum = playerNum;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	@Override

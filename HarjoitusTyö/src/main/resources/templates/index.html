@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Welcome!</title>
+</head>
+<body>
+	<h1>Welcome to the index page!</h1>
+
+	<table class="table table-striped">
+
+
+		<tr>
+		 
+			<th>Teams</th>
+			
+			<th>Players</th>
+
+			<th>Sports</th>
+			
+		</tr>
+
+		<tr>
+			<td><a href="/teams" class="btn btn-success">Teams</a>
+				<a href="/teams" class="btn btn-success">Add a Team</a></td>
+
+			<td><a href="/players" class="btn btn-success">Players</a>
+			<a href="/addPlayer" class="btn btn-success">Add a Player</a></td>
+
+			<td><a href="/sports" class="btn btn-success">Sports</a>
+			<a href="/players" class="btn btn-success">Add a Sport</a></td>
+		</tr>
+	</table>
+
+</body>
+
+</html>

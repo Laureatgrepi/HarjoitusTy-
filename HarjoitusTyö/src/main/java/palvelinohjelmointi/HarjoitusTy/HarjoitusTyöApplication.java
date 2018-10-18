@@ -9,4 +9,6 @@ public class HarjoitusTyöApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HarjoitusTyöApplication.class, args);
 	}
+	
+	//tee beani?
 }

@@ -1,7 +1,16 @@
 package palvelinohjelmointi.HarjoitusTy.HarjoitusTyDomain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Sport {
-	private String name, serie;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+		private Long id;
+		private String name, serie;
 
 	public Sport(String name, String serie) {
 		this.name = name;
