@@ -1,18 +1,13 @@
 package palvelinohjelmointi.HarjoitusTy.HarjoitustyoController;
 
-import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import palvelinohjelmointi.HarjoitusTy.HarjoitusTyDomain.Player;
 import palvelinohjelmointi.HarjoitusTy.HarjoitusTyDomain.PlayerRepository;
-import palvelinohjelmointi.HarjoitusTy.HarjoitusTyDomain.Sport;
-import palvelinohjelmointi.HarjoitusTy.HarjoitusTyDomain.Team;
 
 @Controller
 public class PlayerController {
@@ -29,7 +24,7 @@ public class PlayerController {
 	
 	@GetMapping("/players")
 	public String showPlayers (Model model) {
-		model.addAttribute("player", new Player());
+		model.addAttribute("players", playerRepo.findAll());
 		return "playerList";
 	}
 	

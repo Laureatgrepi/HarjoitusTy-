@@ -14,11 +14,24 @@
 <div class="col-md-4">
 		
 	</div>
-	<div class="col-md-4" style="padding:20px 0">
-			<ul th:each="player: ${players}">
-			<li th:text="${player.firstName} ">Friend name</li>
-		</ul>
-		</div>
+<table class="table table-striped">
+	<tr>
+		<th>Firstname</th>
+		<th>Lastname</th>
+		<th>Player number</th>
+	</tr>
+	
+	<tr th:each = "player : ${players}">
+		<td th:text="${player.firstName}"></td>
+		<td th:text="${player.lastName}"></td>
+		<td th:text="${player.playerNum}"></td>
+	
+	</tr>	
+	
+</table>
+	
+	
+	
 		
        
 	 
