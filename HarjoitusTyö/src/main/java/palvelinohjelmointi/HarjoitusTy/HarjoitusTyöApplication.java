@@ -13,6 +13,8 @@ import palvelinohjelmointi.HarjoitusTy.HarjoitusTyDomain.Sport;
 import palvelinohjelmointi.HarjoitusTy.HarjoitusTyDomain.SportRepository;
 import palvelinohjelmointi.HarjoitusTy.HarjoitusTyDomain.Team;
 import palvelinohjelmointi.HarjoitusTy.HarjoitusTyDomain.TeamRepository;
+import palvelinohjelmointi.HarjoitusTy.HarjoitusTyDomain.User;
+import palvelinohjelmointi.HarjoitusTy.HarjoitusTyDomain.UserRepository;
 
 @SpringBootApplication
 public class HarjoitusTyöApplication {
@@ -24,7 +26,7 @@ public class HarjoitusTyöApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner sportDemo (PlayerRepository pRepo, SportRepository sRepo, TeamRepository tRepo) {
+	public CommandLineRunner sportDemo (PlayerRepository pRepo, SportRepository sRepo, TeamRepository tRepo, UserRepository uRepo) {
 		return(args)->{
 			log.info("save a couple of players, teams and sports");
 			pRepo.save(new Player("Laureat", "Grepi", "6"));
@@ -33,6 +35,14 @@ public class HarjoitusTyöApplication {
 			tRepo.save(new Team("Leijonat"));
 			sRepo.save(new Sport("Koripallo"));
 			sRepo.save(new Sport("Jalkapallo"));
+			
+			User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
+			User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");
+			
+			
+			uRepo.save(user1);
+			uRepo.save(user2);
+			
 			
 			log.info("fetch all players");
 			for(Player player : pRepo.findAll()) {

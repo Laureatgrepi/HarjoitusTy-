@@ -4,16 +4,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import palvelinohjelmointi.HarjoitusTy.HarjoitusTyDomain.Player;
 import palvelinohjelmointi.HarjoitusTy.HarjoitusTyDomain.PlayerRepository;
+import palvelinohjelmointi.HarjoitusTy.HarjoitusTyDomain.SportRepository;
+import palvelinohjelmointi.HarjoitusTy.HarjoitusTyDomain.TeamRepository;
 
 @Controller
 public class PlayerController {
 	
 	@Autowired
 	private PlayerRepository playerRepo;
+	
+	@Autowired
+	private TeamRepository teamRepo;
+	
+	@Autowired 
+	private SportRepository sportRepo;
+	
+	
+	@RequestMapping(value="/login")
+    public String login() {	
+        return "login";
+    }
 	
 	@GetMapping("/index")
 	public String hae (Model model) {
@@ -38,8 +54,17 @@ public class PlayerController {
 	public String savePlayer(Player player) {
 		playerRepo.save(player);
 		return "redirect:playerList";
+		//ei toimi tallentaminen
 		
 	}
-
+	@GetMapping("/edit/{id}")
+	public String editPlayer(@PathVariable("id") Long playerId, Model model) {
+		model.addAttribute("player", playerRepo.findById(playerId));
+		model.addAttribute("teams", teamRepo.findAll());
+		model.addAttribute("sports", sportRepo.findAll());
+		
+		return "editPlayer";
+		
+	}
 	
 }
