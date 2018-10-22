@@ -53,8 +53,7 @@ public class PlayerController {
 	@PostMapping("/savePlayer")
 	public String savePlayer(Player player) {
 		playerRepo.save(player);
-		return "redirect:playerList";
-		//ei toimi tallentaminen
+		return "redirect:players";
 		
 	}
 	@GetMapping("/edit/{id}")

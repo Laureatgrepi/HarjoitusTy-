@@ -1,47 +1,50 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
 <head>
- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Players</title>
 </head>
 
 <body>
-<div class="col-md-4">
-<h1>Players</h1>
+	<div class="col-md-4">
+		<h1>Players</h1>
 
-	<div class="col-md-4" style="padding:20px 0">
-		<form th:action="@{/logout}" method="post">
-			<input type="submit" value="Sign Out" class="btn btn-danger"/>
-		</form>
-		</div>
-		
+<a th:href="@{/index}" class="btn btn-primary">Index Page</a>
+
 	</div>
-<table class="table table-striped">
-	<tr>
-		<th>Id</th>
-		<th>Firstname</th>
-		<th>Lastname</th>
-		<th>Player number</th>
-		<th></th>
-		<th></th>
-	</tr>
-	
-	<tr th:each = "player : ${players}">
-		<td th:text="${player.id}"></td>
-		<td th:text="${player.firstName}"></td>
-		<td th:text="${player.lastName}"></td>
-		<td th:text="${player.playerNum}"></td>
-		<td><a th:href="@{/edit/{id}(id=${player.id})}" class="btn btn-warning">Edit</a></td>
-	
-	</tr>	
-	
-</table>
-	
-	
-	
-		
-       
-	 
+	<table class="table table-striped">
+		<tr>
+			<th>Id</th>
+			<th>Firstname</th>
+			<th>Lastname</th>
+			<th>Player number</th>
+			<th></th>
+			<th></th>
+		</tr>
+
+		<tr th:each="player : ${players}">
+			<td th:text="${player.id}"></td>
+			<td th:text="${player.firstName}"></td>
+			<td th:text="${player.lastName}"></td>
+			<td th:text="${player.playerNum}"></td>
+			<td><a th:href="@{/edit/{id}(id=${player.id})}"
+				class="btn btn-warning">Edit</a></td>
+
+		</tr>
+
+	</table>
+	<a th:href="@{/addPlayer}" class="btn btn-info">Add Player</a>
+
+	<div class="col-md-4" style="padding: 20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-danger" />
+		</form>
+	</div>
+
+
+
 </body>
 </html>

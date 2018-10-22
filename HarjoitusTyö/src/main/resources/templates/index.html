@@ -9,11 +9,7 @@
 <body>
 	<h1>Welcome to the index page!</h1>
 
-	<div class="col-md-4" style="padding: 20px 0">
-		<form th:action="@{/logout}" method="post">
-			<input type="submit" value="Sign Out" class="btn btn-danger" />
-		</form>
-	</div>
+
 	
 	<table class="table table-striped">
 
@@ -32,10 +28,14 @@
 				href="/addPlayer" class="btn btn-success">Add a Player</a></td>
 
 			<td><a href="/sports" class="btn btn-success">Sports</a> <a
-				href="/players" class="btn btn-success">Add a Sport</a></td>
+				href="/sports" class="btn btn-success">Add a Sport</a></td>
 		</tr>
 	</table>
-
+	<div class="col-md-4" style="padding: 20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-danger" />
+		</form>
+	</div>
 </body>
 
 </html>
