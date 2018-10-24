@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Edit Player</title>
+</head>
+<body>
+	<h1>Edit Player</h1>
+	<a th:href="@{/index}" class="btn btn-primary">Index Page</a>
+	<div>
+		<form th:object="${player}" th:action="@{../savePlayer}" action="#"
+			method="post">
+
+
+			<label for="name">Team name</label> <input type="text"
+				id="name" th:field="*{name}" />
+
+			<div style="clear: both; display: block; height: 10px;"></div>
+
+			<input type="hidden" id="id" th:field="*{id}" /> <input
+				type="submit" value="Save" class="btn btn-success"></input>
+
+
+
+		</form>
+	</div>
+</body>
+</html>

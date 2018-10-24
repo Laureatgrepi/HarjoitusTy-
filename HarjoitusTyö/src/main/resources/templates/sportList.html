@@ -13,13 +13,14 @@
 
 	<a th:href="@{/index}" class="btn btn-primary">Index Page</a>
 		
-	<table class="table table-striped">
+	<table class="table">
+	<thead class="thead-dark">
 	<tr>
 
 		<th>Sport</th>
 		
 	</tr>
-	
+	</thead>
 	<tr th:each = "sport : ${sports}">
 		
 		<td th:text="${sport.name}"></td>

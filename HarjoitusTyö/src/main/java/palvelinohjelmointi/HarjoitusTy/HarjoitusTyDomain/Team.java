@@ -10,7 +10,7 @@ public class Team {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
+	private Long teamId;
 	private String name;
 
 	public Team(String name) {

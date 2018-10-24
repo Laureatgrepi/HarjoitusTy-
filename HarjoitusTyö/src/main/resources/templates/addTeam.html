@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Add Team</title>
+</head>
+<body>
+	<h1>Add Team</h1>
+
+<a th:href="@{/index}" class="btn btn-primary">Index Page</a>
+	<div>
+		<form th:object="${team}" th:action="@{saveTeam}" action="#"
+			method="post">
+
+
+			<label for="name">Team name</label> <input type="text"
+				id="name" th:field="*{name}" />
+
+			<div style="clear: both; display: block; height: 10px;"></div>
+
+			<input type="submit" value="Save"></input>
+
+
+
+		</form>
+	</div>
+		<div class="col-md-4" style="padding:20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-danger"/>
+		</form>
+		</div>
+</body>
+</html>
