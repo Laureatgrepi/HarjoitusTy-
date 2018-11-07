@@ -8,36 +8,38 @@
 </head>
 <body>
 	<h1>Edit Player</h1>
-<a th:href="@{/index}" class="btn btn-primary">Index Page</a>
+	<a th:href="@{/index}" class="btn btn-primary">Index Page</a>
 	<div>
 		<form th:object="${player}" th:action="@{../savePlayer}" action="#"
-			method="post">			
+			method="post">
 
 
-			<label for="firstName">Firstname</label> <input type="text" id="firstName"
-				th:field="*{firstName}" />
-
-			<div style="clear: both; display: block; height: 10px;"></div>
-
-			<label for="lastName">Lastname</label> <input type="text" id="lastName"
-				th:field="*{lastName}" />
+			<label for="firstName">Firstname</label> <input type="text"
+				id="firstName" th:field="*{firstName}" />
 
 			<div style="clear: both; display: block; height: 10px;"></div>
 
-			<label for="playerNum">Player Number</label> <input type="text" id="playerNum"
-				th:field="*{playerNum}" />
+			<label for="lastName">Lastname</label> <input type="text"
+				id="lastName" th:field="*{lastName}" />
 
-			
-			
 			<div style="clear: both; display: block; height: 10px;"></div>
 
+			<label for="playerNum">Player Number</label> <input type="text"
+				id="playerNum" th:field="*{playerNum}" />
+
+			<div style="clear: both; display: block; height: 10px;"></div>
+
+			<div style="width: 200px">
+			<label for="teamlist"> Team:</label>
+			<select id="teamlist" th:field="*{team}" class="form-control ">
+			<option th:each="team: ${teams}" th:value="${team.teamId }"
+				    th:text="${team.name}"></option>
+			</select>
+			</div>
 
 
-			<input type="hidden" id="id" th:field="*{id}" />
-			 <input type="submit" value="Save" class="btn btn-success"></input>
-
-
-
+				<input type="hidden" id="id" th:field="*{id}" /> <input
+					type="submit" value="Save" class="btn btn-success"></input>
 		</form>
 	</div>
 </body>

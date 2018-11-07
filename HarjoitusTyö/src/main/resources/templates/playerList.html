@@ -10,6 +10,7 @@
 
 <body>
 	<div class="col-md-4">
+	
 		<h1>Players</h1>
 
 <a th:href="@{/index}" class="btn btn-primary">Index Page</a>
@@ -22,7 +23,9 @@
 			<th>Firstname</th>
 			<th>Lastname</th>
 			<th>Player number</th>
+			<th>Team</th>
 			<th></th>
+			<th sec:authorize="hasAuthority('ADMIN')"></th>
 		</tr>
 	</thead>
 		<tr th:each="player : ${players}">
@@ -30,8 +33,13 @@
 			<td th:text="${player.firstName}"></td>
 			<td th:text="${player.lastName}"></td>
 			<td th:text="${player.playerNum}"></td>
+			<td th:text="${player.team}"></td>
 			<td><a th:href="@{/edit/{id}(id=${player.id})}"
 				class="btn btn-warning">Edit</a></td>
+			<td sec:authorize="hasAuthority('ADMIN')">
+				<a th:href="@{/delete/{id}(id=${player.id})}"
+				 class="btn btn-danger">Delete</a></td>
+				
 
 		</tr>
 

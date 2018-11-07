@@ -1,43 +1,58 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
 <head>
- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Sports</title>
 </head>
 
 <body>
-<div class="col-md-4">
-<h1>Sports</h1>
-</div>
+	<div class="col-md-4">
+		<h1>Sports</h1>
+	</div>
 
 	<a th:href="@{/index}" class="btn btn-primary">Index Page</a>
-		
-	<table class="table">
-	<thead class="thead-dark">
-	<tr>
 
-		<th>Sport</th>
-		
-	</tr>
-	</thead>
-	<tr th:each = "sport : ${sports}">
-		
-		<td th:text="${sport.name}"></td>
-	
-	
-	</tr>	
-	
-</table>
-	
-	<div class="col-md-4" style="padding:20px 0">
-	
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+
+				<th>Sport</th>
+				<th></th>
+				<th>Teams</th>
+				<th sec:authorize="hasAuthority('ADMIN')"></th>
+
+			</tr>
+		</thead>
+		<tr th:each="sport : ${sports}">
+
+			<td th:text="${sport.name}"></td>
+			<td></td>
+			<td> <ul th:each="team: ${teams}" th:value="${team.teamId}">
+					<li th:text="${team.name}" ></li>
+			
+			</ul>
+				    
+				    </td>
+				    
+			<td sec:authorize="hasAuthority('ADMIN')"><a
+				th:href="@{/deleteSport/{id}(id=${sport.id})}"
+				class="btn btn-danger">Delete</a></td>
+
+		</tr>
+
+	</table>
+
+	<div class="col-md-4" style="padding: 20px 0">
+
 		<form th:action="@{/logout}" method="post">
-			<input type="submit" value="Sign Out" class="btn btn-danger"/>
+			<input type="submit" value="Sign Out" class="btn btn-danger" />
 		</form>
-		</div>	
-		
-       
-	 
+	</div>
+
+
+
 </body>
 </html>

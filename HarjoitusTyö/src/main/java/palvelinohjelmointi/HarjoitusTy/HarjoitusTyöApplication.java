@@ -34,10 +34,25 @@ public class HarjoitusTyöApplication {
 			log.info("save a couple of players, teams and sports");
 			pRepo.save(new Player("Laureat", "Grepi", "6"));
 			pRepo.save(new Player("Pentti", "Pentikäinen", "15"));
-			tRepo.save(new Team("Huuhkajat"));
-			tRepo.save(new Team("Leijonat"));
-			sRepo.save(new Sport("Koripallo"));
-			sRepo.save(new Sport("Jalkapallo"));
+			
+			Sport koripallo = sRepo.save(new Sport("Koripallo"));
+			Sport jalkapallo = sRepo.save(new Sport("Jalkapallo"));
+			
+			
+			
+			tRepo.save(new Team("Huuhkajat", jalkapallo));
+			tRepo.save(new Team("Susijengi", koripallo));
+			tRepo.save(new Team("Seagulls", koripallo));
+			tRepo.save(new Team("KTP", koripallo));
+			tRepo.save(new Team("Pyrintö",koripallo));
+			tRepo.save(new Team("Kobrat", koripallo));
+			tRepo.save(new Team("Ura Basket",koripallo));
+			tRepo.save(new Team("HJK",jalkapallo));
+			tRepo.save(new Team("HIFK",jalkapallo));
+			tRepo.save(new Team("VJS",jalkapallo));
+			tRepo.save(new Team("Ilves",jalkapallo));
+			
+		
 
 			User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
 			User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");

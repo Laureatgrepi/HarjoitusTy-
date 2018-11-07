@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import palvelinohjelmointi.HarjoitusTy.HarjoitusTyDomain.Player;
 import palvelinohjelmointi.HarjoitusTy.HarjoitusTyDomain.Team;
 import palvelinohjelmointi.HarjoitusTy.HarjoitusTyDomain.TeamRepository;
 
@@ -34,5 +33,12 @@ public class TeamController {
 		return "redirect:teams";
 		
 	}
+	@GetMapping("/deleteTeam/{id}")
+	public String deleteTeam(@PathVariable("id") Long teamId, Model model) {
+		teamRepo.deleteById(teamId);
+		return "redirect:../teams";
+
+	}
+	
 	
 }

@@ -1,9 +1,13 @@
 package palvelinohjelmointi.HarjoitusTy.HarjoitusTyDomain;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Sport {
@@ -11,10 +15,27 @@ public class Sport {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 		private Long id;
 		private String name, serie;
+		
+		
+		@OneToMany(cascade = CascadeType.ALL, mappedBy ="sport")
+		private List<Team> teams;
+		
 
 	public Sport(String name, String serie) {
 		this.name = name;
 		this.serie = serie;
+	}
+	public Sport(String name, List<Team> teams) {
+		super();
+		this.name = name;
+		this.teams = teams;
+	}
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Sport(String name) {
@@ -39,6 +60,16 @@ public class Sport {
 
 	public void setSerie(String serie) {
 		this.serie = serie;
+	}
+
+
+
+	public List<Team> getTeams() {
+		return teams;
+	}
+
+	public void setTeams(List<Team> teams) {
+		this.teams = teams;
 	}
 
 	@Override

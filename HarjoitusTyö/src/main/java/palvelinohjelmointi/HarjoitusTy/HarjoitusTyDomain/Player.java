@@ -4,6 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 @Entity
 public class Player {
 	@Id
@@ -11,6 +17,10 @@ public class Player {
 		private Long id;
 		private String firstName, lastName, playerNum;
 
+		@ManyToOne
+		@JsonIgnore
+		@JoinColumn(name="teamId")
+		private Team team;
 
 	public Player(String firstName, String lastName, String playerNum) {
 		this.firstName = firstName;
@@ -22,6 +32,13 @@ public class Player {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
+	}
+
+	public Player(String firstName, String lastName, String playerNum, Team team) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.playerNum = playerNum;
+		this.team = team;
 	}
 
 	public Player() {
@@ -57,6 +74,14 @@ public class Player {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Team getTeam() {
+		return team;
+	}
+
+	public void setTeam(Team team) {
+		this.team = team;
 	}
 
 	@Override
