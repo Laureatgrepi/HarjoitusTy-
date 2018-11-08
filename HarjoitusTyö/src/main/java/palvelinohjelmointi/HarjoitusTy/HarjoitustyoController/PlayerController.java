@@ -1,5 +1,7 @@
 package palvelinohjelmointi.HarjoitusTy.HarjoitustyoController;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import palvelinohjelmointi.HarjoitusTy.HarjoitusTyDomain.Player;
 import palvelinohjelmointi.HarjoitusTy.HarjoitusTyDomain.PlayerRepository;
 import palvelinohjelmointi.HarjoitusTy.HarjoitusTyDomain.SportRepository;
+import palvelinohjelmointi.HarjoitusTy.HarjoitusTyDomain.Team;
 import palvelinohjelmointi.HarjoitusTy.HarjoitusTyDomain.TeamRepository;
 
 @Controller
@@ -47,9 +50,20 @@ public class PlayerController {
 	@GetMapping("/addPlayer")
 	public String addPlayer(Model model) {
 		model.addAttribute("player", new Player());
+		model.addAttribute("teams",teamRepo.findAll());
 		return "addPlayer";
 		
 	}
+	@GetMapping("/teams/{id}/players")
+	public String playersByTeam(@PathVariable ("id") Long teamId, Model model) {
+		Optional<Team> team = teamRepo.findById(teamId);
+		Team team1 = team.get();
+		
+		model.addAttribute("teamPlayers", team1.getPlayers());
+		model.addAttribute("team", team1.getName());
+		return "playersByTeam";
+	}
+	
 	@PostMapping("/savePlayer")
 	public String savePlayer(Player player) {
 		playerRepo.save(player);

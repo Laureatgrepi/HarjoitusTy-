@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Create Book</title>
@@ -8,7 +10,7 @@
 <body>
 	<h1>Add Player</h1>
 
-<a th:href="@{/index}" class="btn btn-primary">Index Page</a>
+	<a th:href="@{/index}" class="btn btn-primary">Index Page</a>
 	<div>
 		<form th:object="${player}" th:action="@{savePlayer}" action="#"
 			method="post">
@@ -27,8 +29,15 @@
 			<label for="playerNum">Player Number</label> <input type="text"
 				id="playerNum" th:field="*{playerNum}" />
 
-
 			<div style="clear: both; display: block; height: 10px;"></div>
+
+			<div style="width: 200px">
+				<label for="teamlist"> Team:</label> <select id="teamlist"
+					th:field="*{team}" class="form-control ">
+					<option th:each="team: ${teams}" th:value="${team.teamId }"
+						th:text="${team.name}"></option>
+				</select>
+			</div>
 
 			<input type="submit" value="Save"></input>
 
@@ -36,10 +45,10 @@
 
 		</form>
 	</div>
-		<div class="col-md-4" style="padding:20px 0">
+	<div class="col-md-4" style="padding: 20px 0">
 		<form th:action="@{/logout}" method="post">
-			<input type="submit" value="Sign Out" class="btn btn-danger"/>
+			<input type="submit" value="Sign Out" class="btn btn-danger" />
 		</form>
-		</div>
+	</div>
 </body>
 </html>

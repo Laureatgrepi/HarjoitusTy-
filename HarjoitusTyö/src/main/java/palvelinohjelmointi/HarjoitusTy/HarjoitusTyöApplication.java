@@ -32,8 +32,6 @@ public class HarjoitusTyöApplication {
 			UserRepository uRepo) {
 		return (args) -> {
 			log.info("save a couple of players, teams and sports");
-			pRepo.save(new Player("Laureat", "Grepi", "6"));
-			pRepo.save(new Player("Pentti", "Pentikäinen", "15"));
 			
 			Sport koripallo = sRepo.save(new Sport("Koripallo"));
 			Sport jalkapallo = sRepo.save(new Sport("Jalkapallo"));
@@ -52,6 +50,20 @@ public class HarjoitusTyöApplication {
 			tRepo.save(new Team("VJS",jalkapallo));
 			tRepo.save(new Team("Ilves",jalkapallo));
 			
+			
+			pRepo.save(new Player("Laureat", "Grepi", "6",tRepo.findByName("Huuhkajat").get(0)));
+			pRepo.save(new Player("Pentti", "Pentikäinen", "15",tRepo.findByName("Huuhkajat").get(0)));
+			pRepo.save(new Player("Matti", "Mattinen", "34",tRepo.findByName("Huuhkajat").get(0)));
+			pRepo.save(new Player("Mikko", "Mikkonen", "64",tRepo.findByName("Huuhkajat").get(0)));
+			pRepo.save(new Player("Maija", "Maijanen", "21",tRepo.findByName("Huuhkajat").get(0)));
+			pRepo.save(new Player("Pekka", "Pekkanen", "23",tRepo.findByName("Huuhkajat").get(0)));
+			pRepo.save(new Player("Esa", "Esanen", "43"));
+			pRepo.save(new Player("Minttu", "Minttunen", "10"));
+			pRepo.save(new Player("Jaska", "Jokunen", "61"));
+			pRepo.save(new Player("Tuomo", "Tuomonen", "5"));
+			
+		
+			
 		
 
 			User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
@@ -63,6 +75,11 @@ public class HarjoitusTyöApplication {
 			log.info("fetch all players");
 			for (Player player : pRepo.findAll()) {
 				log.info(player.toString());
+			}
+			
+			log.info("fetch all teams");
+			for (Team team :tRepo.findAll()) {
+				log.info(team.toString());
 			}
 
 		};

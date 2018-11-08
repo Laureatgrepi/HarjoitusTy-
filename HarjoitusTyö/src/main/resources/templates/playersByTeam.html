@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<link type="text/css" rel="stylesheet" href="../../css/bootstrap.min.css"
+	th:href="@{../../css/bootstrap.min.css}" />
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Players</title>
+</head>
+
+<body>
+	<div class="col-md-4">
+	
+		<h1 th:text="${team}">
+		Players</h1>
+
+<a th:href="@{/index}" class="btn btn-primary">Index Page</a>
+
+	</div>
+	<table class="table">
+	<thead class="thead-dark">
+		<tr>
+			<th>Id</th>
+			<th>Firstname</th>
+			<th>Lastname</th>
+			<th>Player number</th>
+			<th>Team</th>
+			<th></th>
+			<th sec:authorize="hasAuthority('ADMIN')"></th>
+		</tr>
+	</thead>
+		<tr th:each="player : ${teamPlayers}">
+			<td th:text="${player.id}"></td>
+			<td th:text="${player.firstName}"></td>
+			<td th:text="${player.lastName}"></td>
+			<td th:text="${player.playerNum}"></td>
+			<td th:text="${player.team}"></td>
+			<td><a th:href="@{/edit/{id}(id=${player.id})}"
+				class="btn btn-warning">Edit</a></td>
+			<td sec:authorize="hasAuthority('ADMIN')">
+				<a th:href="@{/delete/{id}(id=${player.id})}"
+				 class="btn btn-danger">Delete</a></td>
+				
+
+		</tr>
+
+	</table>
+	<a th:href="@{/addPlayer}" class="btn btn-info">Add Player</a>
+
+	<div class="col-md-4" style="padding: 20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-danger" />
+		</form>
+	</div>
+
+
+
+</body>
+</html>

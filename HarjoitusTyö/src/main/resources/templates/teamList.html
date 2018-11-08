@@ -17,25 +17,27 @@
 
 
 	<table class="table">
-	<thead class="thead-dark">
-		<tr>
+		<thead class="thead-dark">
+			<tr>
 
-			<th>Team name</th>
-			<th></th>
-			<th>Sport</th>
-			<th sec:authorize="hasAuthority('ADMIN')"></th>
-		</tr>
-	</thead>	
+				<th>Team name</th>
+				<th>Sport</th>
+				<th>Players</th>
+				<th sec:authorize="hasAuthority('ADMIN')"></th>
+			</tr>
+		</thead>
 		<tr th:each="team : ${teams}">
 
 			<td th:text="${team.name}"></td>
-			<td></td>
 			<td th:text="${team.sport}"></td>
-			<td sec:authorize="hasAuthority('ADMIN')">
-				<a th:href="@{/deleteTeam/{id}(id=${team.teamId})}" 
+			<td><a th:href="@{/teams/{id}/players(id=${team.teamId})}"
+				>Players</a></td>
+				
+			<td sec:authorize="hasAuthority('ADMIN')"><a
+				th:href="@{/deleteTeam/{id}(id=${team.teamId})}"
 				class="btn btn-danger">Delete</a></td>
-			
-			
+
+
 
 		</tr>
 

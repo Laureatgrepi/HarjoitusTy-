@@ -14,7 +14,7 @@ public class Sport {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 		private Long id;
-		private String name, serie;
+		private String name;
 		
 		
 		@OneToMany(cascade = CascadeType.ALL, mappedBy ="sport")
@@ -23,7 +23,6 @@ public class Sport {
 
 	public Sport(String name, String serie) {
 		this.name = name;
-		this.serie = serie;
 	}
 	public Sport(String name, List<Team> teams) {
 		super();
@@ -54,14 +53,6 @@ public class Sport {
 		this.name = name;
 	}
 
-	public String getSerie() {
-		return serie;
-	}
-
-	public void setSerie(String serie) {
-		this.serie = serie;
-	}
-
 
 
 	public List<Team> getTeams() {
@@ -74,7 +65,7 @@ public class Sport {
 
 	@Override
 	public String toString() {
-		return "Sport [name=" + name + ", serie=" + serie + "]";
+		return getName();
 	}
 	
 	

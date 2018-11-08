@@ -28,8 +28,9 @@
 		</thead>
 		<tr th:each="sport : ${sports}">
 
-			<td th:text="${sport.name}"></td>
+			<td  th:text="${sport.name}" > </td>
 			<td></td>
+			
 			<td> <ul th:each="team: ${teams}" th:value="${team.teamId}">
 					<li th:text="${team.name}" ></li>
 			
