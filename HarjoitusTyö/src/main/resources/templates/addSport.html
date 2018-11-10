@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Add Sport</title>
 </head>
-<body>
+<body style="background-color:rgb(255, 223, 185);">
 	<h1>Add Sport</h1>
 
 	<a th:href="@{/index}" class="btn btn-primary">Index Page</a>
@@ -19,10 +19,6 @@
 			<label for="name">Sport name</label> <input type="text" id="name"
 				th:field="*{name}" />
 
-			<div style="clear: both; display: block; height: 10px;"></div>
-
-			<label for="serie">Serie</label> <input type="text" id="serie"
-				th:field="*{serie}" />
 
 			<div style="clear: both; display: block; height: 10px;"></div>
 			<input type="submit" value="Save"></input>

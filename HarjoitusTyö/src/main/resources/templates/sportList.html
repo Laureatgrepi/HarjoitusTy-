@@ -8,20 +8,20 @@
 <title>Sports</title>
 </head>
 
-<body>
+<body style="background-color:rgb(255, 223, 185);">
 	<div class="col-md-4">
 		<h1>Sports</h1>
 	</div>
 
 	<a th:href="@{/index}" class="btn btn-primary">Index Page</a>
 
-	<table class="table">
+	<table class="table" id="myTable">
 		<thead class="thead-dark">
 			<tr>
 
-				<th>Sport</th>
+				<th onclick="sortTable('0')">Sport</th>
 				<th></th>
-				<th>Teams</th>
+				<th onclick="sortTable('2')">Teams</th>
 				<th sec:authorize="hasAuthority('ADMIN')"></th>
 
 			</tr>
@@ -31,10 +31,13 @@
 			<td  th:text="${sport.name}" > </td>
 			<td></td>
 			
-			<td> <ul th:each="team: ${teams}" th:value="${team.teamId}">
-					<li th:text="${team.name}" ></li>
+			<td > 	
 			
-			</ul>
+			<select id="teamlist" th:field="*{teams}"
+				class="form-control " >
+					<option th:each="team: ${teams}" th:value="${team.teamId }"
+						th:text="${team.name}"></option>
+			</select>
 				    
 				    </td>
 				    
@@ -53,6 +56,30 @@
 		</form>
 	</div>
 
+<script>
+		function sortTable(num) {
+			var table, rows, switching, i, x, y, shouldSwitch;
+			table = document.getElementById("myTable");
+			switching = true;
+			while (switching) {
+				switching = false;
+				rows = table.rows;
+				for (i = 1; i < (rows.length - 1); i++) {
+					shouldSwitch = false;
+					x = rows[i].getElementsByTagName("TD")[num];
+					y = rows[i + 1].getElementsByTagName("TD")[num];
+					if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+						shouldSwitch = true;
+						break;
+					}
+				}
+				if (shouldSwitch) {
+					rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+					switching = true;
+				}
+			}
+		}
+	</script>
 
 
 </body>

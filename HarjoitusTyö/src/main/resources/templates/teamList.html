@@ -8,7 +8,7 @@
 <title>Teams</title>
 </head>
 
-<body>
+<body style="background-color:rgb(255, 223, 185);">
 	<div class="col-md-4">
 		<h1>Teams</h1>
 		<a th:href="@{/index}" class="btn btn-primary">Index Page</a>
@@ -16,13 +16,13 @@
 
 
 
-	<table class="table">
+	<table class="table" id="myTable">
 		<thead class="thead-dark">
 			<tr>
 
-				<th>Team name</th>
-				<th>Sport</th>
-				<th>Players</th>
+				<th onclick="sortTable('0')">Team name</th>
+				<th onclick="sortTable('1')">Sport</th>
+				<th onclick="sortTable('2')">Players</th>
 				<th sec:authorize="hasAuthority('ADMIN')"></th>
 			</tr>
 		</thead>
@@ -49,6 +49,30 @@
 		</form>
 	</div>
 
+<script>
+		function sortTable(num) {
+			var table, rows, switching, i, x, y, shouldSwitch;
+			table = document.getElementById("myTable");
+			switching = true;
+			while (switching) {
+				switching = false;
+				rows = table.rows;
+				for (i = 1; i < (rows.length - 1); i++) {
+					shouldSwitch = false;
+					x = rows[i].getElementsByTagName("TD")[num];
+					y = rows[i + 1].getElementsByTagName("TD")[num];
+					if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+						shouldSwitch = true;
+						break;
+					}
+				}
+				if (shouldSwitch) {
+					rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+					switching = true;
+				}
+			}
+		}
+	</script>
 
 </body>
 </html>

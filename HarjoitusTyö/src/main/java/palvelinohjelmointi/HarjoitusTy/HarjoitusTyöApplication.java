@@ -48,7 +48,14 @@ public class HarjoitusTyöApplication {
 			tRepo.save(new Team("HJK",jalkapallo));
 			tRepo.save(new Team("HIFK",jalkapallo));
 			tRepo.save(new Team("VJS",jalkapallo));
-			tRepo.save(new Team("Ilves",jalkapallo));
+			tRepo.save(new Team("Lakers",koripallo));
+			tRepo.save(new Team("Warriors",koripallo));
+			tRepo.save(new Team("Celtics",koripallo));
+			tRepo.save(new Team("Rockets",koripallo));
+			tRepo.save(new Team("Arsenal",jalkapallo));
+			tRepo.save(new Team("Juventus",jalkapallo));
+			tRepo.save(new Team("FC Barcelona",jalkapallo));
+			tRepo.save(new Team("Chelsea FC",jalkapallo));
 			
 			
 			pRepo.save(new Player("Laureat", "Grepi", "6",tRepo.findByName("Huuhkajat").get(0)));
@@ -57,10 +64,23 @@ public class HarjoitusTyöApplication {
 			pRepo.save(new Player("Mikko", "Mikkonen", "64",tRepo.findByName("Huuhkajat").get(0)));
 			pRepo.save(new Player("Maija", "Maijanen", "21",tRepo.findByName("Huuhkajat").get(0)));
 			pRepo.save(new Player("Pekka", "Pekkanen", "23",tRepo.findByName("Huuhkajat").get(0)));
-			pRepo.save(new Player("Esa", "Esanen", "43"));
-			pRepo.save(new Player("Minttu", "Minttunen", "10"));
-			pRepo.save(new Player("Jaska", "Jokunen", "61"));
-			pRepo.save(new Player("Tuomo", "Tuomonen", "5"));
+			pRepo.save(new Player("Esa", "Esanen", "43",tRepo.findByName("Huuhkajat").get(0)));
+			pRepo.save(new Player("Minttu", "Minttunen", "10",tRepo.findByName("Huuhkajat").get(0)));
+			pRepo.save(new Player("Jaska", "Jokunen", "61",tRepo.findByName("Huuhkajat").get(0)));
+			pRepo.save(new Player("Kevin", "Durant", "35",tRepo.findByName("Warriors").get(0)));
+			pRepo.save(new Player("Tuomo", "Tuomonen", "5",tRepo.findByName("Huuhkajat").get(0)));
+			pRepo.save(new Player("Steph", "Curry", "30",tRepo.findByName("Warriors").get(0)));
+			pRepo.save(new Player("LeBron", "James", "23",tRepo.findByName("Lakers").get(0)));
+			pRepo.save(new Player("Lonzo", "Ball", "2",tRepo.findByName("Lakers").get(0)));
+			pRepo.save(new Player("Rajon", "Rondo", "9",tRepo.findByName("Lakers").get(0)));
+			pRepo.save(new Player("Kyrie", "Irving", "2",tRepo.findByName("Celtics").get(0)));
+			pRepo.save(new Player("James", "Harden", "6",tRepo.findByName("Rockets").get(0)));
+			pRepo.save(new Player("Christiano", "Ronaldo", "7",tRepo.findByName("Juventus").get(0)));
+			pRepo.save(new Player("Lionel", "Messi", "10",tRepo.findByName("FC Barcelona").get(0)));
+			pRepo.save(new Player("Didier", "Drogba", "14",tRepo.findByName("Arsenal").get(0)));
+			pRepo.save(new Player("Mohammed", "Salah", "34",tRepo.findByName("Arsenal").get(0)));
+			pRepo.save(new Player("Eden", "Hazard", "10",tRepo.findByName("Chelsea FC").get(0)));
+			
 			
 		
 			
@@ -68,7 +88,6 @@ public class HarjoitusTyöApplication {
 
 			User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
 			User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");
-
 			uRepo.save(user1);
 			uRepo.save(user2);
 

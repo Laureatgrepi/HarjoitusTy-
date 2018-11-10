@@ -8,26 +8,27 @@
 <title>Players</title>
 </head>
 
-<body>
+<body style="background-color: rgb(255, 223, 185);">
 	<div class="col-md-4">
-	
+
 		<h1>Players</h1>
 
-<a th:href="@{/index}" class="btn btn-primary">Index Page</a>
+		<a th:href="@{/index}" class="btn btn-primary">Index Page</a>
 
 	</div>
-	<table class="table">
-	<thead class="thead-dark">
-		<tr>
-			<th>Id</th>
-			<th>Firstname</th>
-			<th>Lastname</th>
-			<th>Player number</th>
-			<th>Team</th>
-			<th></th>
-			<th sec:authorize="hasAuthority('ADMIN')"></th>
-		</tr>
-	</thead>
+
+	<table class="table" id="myTable">
+		<thead class="thead-dark">
+			<tr>
+				<th onclick="sortTable('0')">Id</th>
+				<th onclick="sortTable('1')">Firstname</th>
+				<th onclick="sortTable('2')">Lastname</th>
+				<th onclick="sortTable('3')">Player number</th>
+				<th onclick="sortTable('4')">Team</th>
+				<th ></th>
+				<th sec:authorize="hasAuthority('ADMIN')"></th>
+			</tr>
+		</thead>
 		<tr th:each="player : ${players}">
 			<td th:text="${player.id}"></td>
 			<td th:text="${player.firstName}"></td>
@@ -36,10 +37,9 @@
 			<td th:text="${player.team}"></td>
 			<td><a th:href="@{/edit/{id}(id=${player.id})}"
 				class="btn btn-warning">Edit</a></td>
-			<td sec:authorize="hasAuthority('ADMIN')">
-				<a th:href="@{/delete/{id}(id=${player.id})}"
-				 class="btn btn-danger">Delete</a></td>
-				
+			<td sec:authorize="hasAuthority('ADMIN')"><a
+				th:href="@{/delete/{id}(id=${player.id})}" class="btn btn-danger">Delete</a></td>
+
 
 		</tr>
 
@@ -51,7 +51,30 @@
 			<input type="submit" value="Sign Out" class="btn btn-danger" />
 		</form>
 	</div>
-
+	<script>
+		function sortTable(num) {
+			var table, rows, switching, i, x, y, shouldSwitch;
+			table = document.getElementById("myTable");
+			switching = true;
+			while (switching) {
+				switching = false;
+				rows = table.rows;
+				for (i = 1; i < (rows.length - 1); i++) {
+					shouldSwitch = false;
+					x = rows[i].getElementsByTagName("TD")[num];
+					y = rows[i + 1].getElementsByTagName("TD")[num];
+					if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+						shouldSwitch = true;
+						break;
+					}
+				}
+				if (shouldSwitch) {
+					rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+					switching = true;
+				}
+			}
+		}
+	</script>
 
 
 </body>
