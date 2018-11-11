@@ -1,11 +1,11 @@
-x<!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Add student</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
 </head>
-<body>
+<body style="background-color:rgb(255, 223, 185)">
 	<h1>Sign-up</h1>
      <div class="col-md-4">
 		<form th:object="${signupform}" th:action="@{/saveuser}" action="#" method="post">

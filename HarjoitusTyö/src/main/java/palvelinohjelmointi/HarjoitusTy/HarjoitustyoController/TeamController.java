@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import palvelinohjelmointi.HarjoitusTy.HarjoitusTyDomain.SportRepository;
 import palvelinohjelmointi.HarjoitusTy.HarjoitusTyDomain.Team;
 import palvelinohjelmointi.HarjoitusTy.HarjoitusTyDomain.TeamRepository;
 
@@ -14,6 +15,9 @@ import palvelinohjelmointi.HarjoitusTy.HarjoitusTyDomain.TeamRepository;
 public class TeamController {
 	@Autowired
 	private TeamRepository teamRepo;
+	
+	@Autowired
+	private SportRepository sRepo;
 	
 	
 	@GetMapping("/teams")
@@ -24,6 +28,7 @@ public class TeamController {
 	@GetMapping("/addTeam")
 	public String addTeam(Model model) {
 		model.addAttribute("team", new Team());
+		model.addAttribute("sports", sRepo.findAll());
 		return "addTeam";
 		
 	}

@@ -1,4 +1,4 @@
-	package palvelinohjelmointi.HarjoitusTy;
+package palvelinohjelmointi.HarjoitusTy;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -24,14 +24,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception{
 		http
 		.authorizeRequests().antMatchers("/css/**").permitAll()
+		.and()
+		.authorizeRequests().antMatchers("/signup", "/saveuser").permitAll()
+		.antMatchers("/delete/{id}").hasRole("ADMIN")
 		.anyRequest().authenticated()
 		.antMatchers("/h2-console/**").permitAll()
 		.and()
-		.authorizeRequests().antMatchers("/signup", "/saveuser").permitAll()
-		.and()
 	.formLogin()
 		.loginPage("/login")
-		.defaultSuccessUrl("/index")
+		.defaultSuccessUrl("/players")
 		.permitAll()
 		.and()
 	.logout()
