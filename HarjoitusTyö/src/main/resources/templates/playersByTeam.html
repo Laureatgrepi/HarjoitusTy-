@@ -16,8 +16,8 @@
 
 <a th:href="@{/index}" class="btn btn-primary">Index Page</a>
 
-	</div>
-	<table class="table">
+	</div >
+	<table class="table" id="myTable">
 	<thead class="thead-dark">
 		<tr>
 			<th>Id</th>
@@ -53,6 +53,30 @@
 		</form>
 	</div>
 
+	<script>
+		function sortTable(num) {
+			var table, rows, switching, i, x, y, shouldSwitch;
+			table = document.getElementById("myTable");
+			switching = true;
+			while (switching) {
+				switching = false;
+				rows = table.rows;
+				for (i = 1; i < (rows.length - 1); i++) {
+					shouldSwitch = false;
+					x = rows[i].getElementsByTagName("TD")[num];
+					y = rows[i + 1].getElementsByTagName("TD")[num];
+					if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+						shouldSwitch = true;
+						break;
+					}
+				}
+				if (shouldSwitch) {
+					rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+					switching = true;
+				}
+			}
+		}
+	</script>
 
 
 </body>
