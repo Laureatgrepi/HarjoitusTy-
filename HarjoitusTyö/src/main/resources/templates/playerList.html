@@ -38,8 +38,8 @@
 			<td><a th:href="@{/edit/{id}(id=${player.id})}"
 				class="btn btn-warning">Edit</a></td>
 			<td sec:authorize="hasAuthority('ADMIN')"><a
-				th:href="@{/delete/{id}(id=${player.id})}" class="btn btn-danger">Delete</a></td>
-
+				th:href="@{/delete/{id}(id=${player.id})}" class="btn btn-danger"
+				onclick="return confirm('Are you sure you want to Delete this?')">Delete</a></td>
 
 		</tr>
 
